@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1C1C1E;
+    background-color: #F8FAFC;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+}
+
+/* iOS 26 Liquid Glass Styling System */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.9),
+    0 15px 35px -10px rgba(15, 23, 42, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+  border-radius: 28px;
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    0 10px 30px -5px rgba(0, 0, 0, 0.07);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(18px) saturate(175%);
+  -webkit-backdrop-filter: blur(18px) saturate(175%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.85),
+    0 12px 30px -8px rgba(15, 23, 42, 0.04);
+  border-radius: 26px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 106, 26, 0.35);
+  box-shadow: 
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1),
+    0 24px 45px -12px rgba(255, 106, 26, 0.12),
+    0 8px 16px -4px rgba(15, 23, 42, 0.04);
+}
+
+/* Glass interactive button with light sheen sweep */
+.glass-btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: #FF6A1A;
+  color: #FFFFFF;
+  box-shadow: 
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.45),
+    0 10px 25px -5px rgba(255, 106, 26, 0.4);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.glass-btn-primary:hover::after {
+  transform: translateX(380%) rotate(25deg);
+}
+
+.glass-btn-primary:hover {
+  background: #E85A0F;
+  transform: translateY(-2px);
+  box-shadow: 
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.6),
+    0 14px 30px -4px rgba(255, 106, 26, 0.45);
+}
+
+.glass-btn-secondary {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: #1C1C1E;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    0 8px 20px -6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-2px);
+  box-shadow: 
+    inset 0 1px 1.5px rgba(255, 255, 255, 1),
+    0 12px 24px -6px rgba(0, 0, 0, 0.08);
+}
+
+/* Floating animation for 3D elements */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+}
+
+@keyframes gentle-float-alt {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-1.5deg);
+  }
+}
+
+.animate-float-slow {
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+.animate-float-alt {
+  animation: gentle-float-alt 7s ease-in-out infinite;
+}
+
+/* Subtle glass inputs */
+.glass-input {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: inset 0 1.5px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #FF6A1A;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 106, 26, 0.15);
+}

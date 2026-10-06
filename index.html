@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <script>
+      // Protect window.fetch against setter-less TypeError in sandboxed iframes
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          if (originalFetch) {
+            var _curFetch = originalFetch.bind(window);
+            try {
+              Object.defineProperty(window, 'fetch', {
+                get: function() { return _curFetch; },
+                set: function(fn) { _curFetch = fn; },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (e1) {
+              try {
+                var p = Object.getPrototypeOf(window);
+                if (p) {
+                  Object.defineProperty(p, 'fetch', {
+                    get: function() { return _curFetch; },
+                    set: function(fn) { _curFetch = fn; },
+                    configurable: true,
+                    enumerable: true
+                  });
+                }
+              } catch (e2) {}
+            }
+          }
+        } catch (err) {}
+      })();
+    </script>
+    <title>Punjabi Tadka Nutrition – Authentic Supplements in Firozpur</title>
+    <meta name="description" content="Your Trusted Supplement Store in Firozpur, Punjab – 100% Authentic Brands with GST Bill. Honest expert guidance on Protein, Creatine, Pre Workout & Vitamins." />
+    <meta property="og:title" content="Punjabi Tadka Nutrition – Authentic Supplements in Firozpur" />
+    <meta property="og:description" content="Your Trusted Supplement Store in Firozpur, Punjab – 100% Authentic Brands with GST Bill. Honest expert guidance on Protein, Creatine, Pre Workout & Vitamins." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#FF6A1A" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-50 text-slate-900 antialiased selection:bg-orange-500 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
