@@ -2,7 +2,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Product } from '../types/product';
 import { INITIAL_PRODUCTS } from '../data/initialProducts';
 
-const STORAGE_KEY = 'punjabi_tadka_products_v1';
+const STORAGE_KEY = 'punjabi_tadka_products_v2';
 const SUPABASE_CONFIG_KEY = 'punjabi_tadka_supabase_cfg';
 
 export const normalizeSupabaseUrl = (url?: string): string => {

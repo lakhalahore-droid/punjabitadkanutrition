@@ -11,7 +11,7 @@ export interface Product {
   name: string;
   brand: string;
   category: ProductCategory;
-  price?: number;
+  price: number;
   discountPrice?: number;
   sizeWeight: string; // e.g. "2.27 kg (5 lbs)", "250 g", "120 Tablets"
   flavour?: string; // e.g. "Double Rich Chocolate", "Watermelon", "Unflavoured"
