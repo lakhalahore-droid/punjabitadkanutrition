@@ -144,7 +144,31 @@ export const getLocalProducts = (): Product[] => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_PRODUCTS));
       return INITIAL_PRODUCTS;
     }
-    return JSON.parse(raw);
+    const parsed: Product[] = JSON.parse(raw);
+    const initialMap = new Map(INITIAL_PRODUCTS.map((p) => [p.id, p]));
+
+    // Check if any product has broken or placeholder amazon images
+    let hasBrokenImages = false;
+    const repaired = parsed.map((p) => {
+      const fresh = initialMap.get(p.id);
+      const isBroken =
+        !p.images ||
+        p.images.length === 0 ||
+        p.images.some((img: string) => typeof img === 'string' && img.includes('images-na.ssl-images-amazon.com/images/P/'));
+
+      if (fresh && isBroken) {
+        hasBrokenImages = true;
+        return { ...p, images: fresh.images };
+      }
+      return p;
+    });
+
+    if (hasBrokenImages) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(repaired));
+      return repaired;
+    }
+
+    return parsed;
   } catch {
     return INITIAL_PRODUCTS;
   }
@@ -157,6 +181,8 @@ export const saveLocalProducts = (products: Product[]) => {
 /* --- Hybrid Database API (Supabase with instant local fallback) --- */
 export const fetchAllProducts = async (): Promise<Product[]> => {
   const client = getSupabaseClient();
+  const initialMap = new Map(INITIAL_PRODUCTS.map((p) => [p.id, p]));
+
   if (client) {
     try {
       let queryResult = await client
@@ -178,22 +204,48 @@ export const fetchAllProducts = async (): Promise<Product[]> => {
 
       if (data && data.length > 0) {
         // Map Supabase snake_case/camelCase
-        const mapped: Product[] = data.map((item: any) => ({
-          id: item.id || `prod-${Date.now()}`,
-          name: item.name,
-          brand: item.brand,
-          category: item.category,
-          price: Number(item.price),
-          discountPrice: item.discount_price ? Number(item.discount_price) : (item.discountPrice ? Number(item.discountPrice) : undefined),
-          sizeWeight: item.size_weight || item.sizeWeight || '',
-          flavour: item.flavour || item.flavor || '',
-          description: item.description || '',
-          inStock: Boolean(item.in_stock ?? item.inStock ?? true),
-          featured: Boolean(item.featured ?? false),
-          images: Array.isArray(item.images) ? item.images : (item.image_url ? [item.image_url] : []),
-          createdAt: item.created_at || item.createdAt,
-          updatedAt: item.updated_at || item.updatedAt,
-        }));
+        const mapped: Product[] = data.map((item: any) => {
+          const fresh = initialMap.get(item.id);
+          let itemImages: string[] = Array.isArray(item.images)
+            ? item.images
+            : item.image_url
+            ? [item.image_url]
+            : [];
+
+          // If remote image is broken Amazon placeholder, heal with verified images
+          const isBroken =
+            itemImages.length === 0 ||
+            itemImages.some(
+              (img: string) =>
+                typeof img === 'string' &&
+                img.includes('images-na.ssl-images-amazon.com/images/P/')
+            );
+
+          if (isBroken && fresh && fresh.images && fresh.images.length > 0) {
+            itemImages = fresh.images;
+          }
+
+          return {
+            id: item.id || `prod-${Date.now()}`,
+            name: item.name,
+            brand: item.brand,
+            category: item.category,
+            price: Number(item.price),
+            discountPrice: item.discount_price
+              ? Number(item.discount_price)
+              : item.discountPrice
+              ? Number(item.discountPrice)
+              : undefined,
+            sizeWeight: item.size_weight || item.sizeWeight || '',
+            flavour: item.flavour || item.flavor || '',
+            description: item.description || '',
+            inStock: Boolean(item.in_stock ?? item.inStock ?? true),
+            featured: Boolean(item.featured ?? false),
+            images: itemImages,
+            createdAt: item.created_at || item.createdAt,
+            updatedAt: item.updated_at || item.updatedAt,
+          };
+        });
         // Update local cache for offline/instant render
         saveLocalProducts(mapped);
         return mapped;

@@ -17,9 +17,27 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const images = product.images && product.images.length > 0 
+  const rawImages = product.images && product.images.length > 0 
     ? product.images 
-    : ['/placeholder-supplement.jpg'];
+    : ['/placeholder-supplement.svg'];
+
+  const images = rawImages;
+  const [failedIndices, setFailedIndices] = useState<Record<number, boolean>>({});
+
+  const handleModalImageError = (index: number) => {
+    setFailedIndices((prev) => ({ ...prev, [index]: true }));
+  };
+
+  const handleModalImageLoad = (e: React.SyntheticEvent<HTMLImageElement>, index: number) => {
+    if (e.currentTarget.naturalWidth <= 1 || e.currentTarget.naturalHeight <= 1) {
+      handleModalImageError(index);
+    }
+  };
+
+  const getValidImgSrc = (index: number) => {
+    if (failedIndices[index]) return '/placeholder-supplement.svg';
+    return images[index] || '/placeholder-supplement.svg';
+  };
 
   const effectivePrice = product.discountPrice || product.price;
   const hasDiscount = Boolean(product.discountPrice && product.discountPrice < product.price);
@@ -46,14 +64,17 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           {/* Left: Image Gallery */}
           <div className="flex flex-col gap-3">
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-white/80 border border-white/80 shadow-inner flex items-center justify-center">
+            <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-b from-slate-50/80 to-white/95 border border-white/80 shadow-inner flex items-center justify-center p-4">
               <img
-                src={images[activeImageIndex] || images[0]}
+                key={getValidImgSrc(activeImageIndex)}
+                src={getValidImgSrc(activeImageIndex)}
                 alt={product.name}
-                className="w-full h-full object-contain p-2 transition-all duration-300"
+                onError={() => handleModalImageError(activeImageIndex)}
+                onLoad={(e) => handleModalImageLoad(e, activeImageIndex)}
+                className="w-full h-full object-contain transition-all duration-300 filter drop-shadow-sm"
                 referrerPolicy="no-referrer"
               />
-              <span className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white font-bold text-xs px-2.5 py-1 rounded-full shadow-md">
+              <span className="absolute top-3 left-3 bg-slate-900/85 backdrop-blur-md text-white font-bold text-xs px-2.5 py-1 rounded-full shadow-md">
                 Angle {activeImageIndex + 1} of {images.length}
               </span>
             </div>
@@ -66,11 +87,18 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     key={idx}
                     type="button"
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`w-14 h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 bg-white ${
-                      activeImageIndex === idx ? 'border-orange-500 ring-2 ring-orange-500/20' : 'border-white/80 opacity-70 hover:opacity-100'
+                    className={`w-14 h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 bg-white p-1 flex items-center justify-center ${
+                      activeImageIndex === idx ? 'border-orange-500 ring-2 ring-orange-500/20' : 'border-slate-200/80 opacity-70 hover:opacity-100'
                     }`}
                   >
-                    <img src={img} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                    <img
+                      src={getValidImgSrc(idx)}
+                      alt=""
+                      onError={() => handleModalImageError(idx)}
+                      onLoad={(e) => handleModalImageLoad(e, idx)}
+                      className="w-full h-full object-contain"
+                      referrerPolicy="no-referrer"
+                    />
                   </button>
                 ))}
               </div>

@@ -14,10 +14,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     "inStock": true,
     "featured": true,
     "images": [
-      "https://images-na.ssl-images-amazon.com/images/P/B0H62FRYXW.01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0H62FRYXW.01.PT01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0H62FRYXW.01.PT02._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0H62FRYXW.01.PT03._SCLZZZZZZZ_SX1000_.jpg"
+      "/products/gnc_1.jpg",
+      "/products/gnc_2.jpg",
+      "/products/gnc_3.jpg",
+      "https://cdn2.nutrabay.com/uploads/product/images/featured_image--1784527263.jpg",
+      "https://cdn2.nutrabay.com/uploads/variant/images/featured_image-NB-GNC-1126-01-1784527594.jpg"
     ],
     "createdAt": "2026-03-01T10:00:00Z"
   },
@@ -152,10 +153,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     "inStock": true,
     "featured": true,
     "images": [
-      "https://images-na.ssl-images-amazon.com/images/P/B0D31FNY8Y.01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0D31FNY8Y.01.PT01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0D31FNY8Y.01.PT02._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0D31FNY8Y.01.PT03._SCLZZZZZZZ_SX1000_.jpg"
+      "/products/on_1.jpg",
+      "/products/on_2.jpg",
+      "/products/on_3.jpg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/p/g/j/-original-imahe24wasuyn3gn.jpeg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/t/0/o/-original-imahe24wad25mdqd.jpeg"
     ],
     "createdAt": "2026-03-01T16:30:00Z"
   },
@@ -172,10 +174,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     "inStock": true,
     "featured": true,
     "images": [
-      "https://images-na.ssl-images-amazon.com/images/P/B0DVPKYPKN.01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0DVPKYPKN.01.PT01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0DVPKYPKN.01.PT02._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0DVPKYPKN.01.PT03._SCLZZZZZZZ_SX1000_.jpg"
+      "/products/gladiator_1.jpg",
+      "/products/gladiator_2.jpg",
+      "/products/gladiator_3.jpg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/d/n/c/pre-workout-nomercy-pre-workout-beta-alanine-citrulline-caffeine-original-imahfyf7t6zsgqhz.jpeg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/5/4/p/pre-workout-nomercy-pre-workout-beta-alanine-citrulline-caffeine-original-imahfufsgurzugeq.jpeg"
     ],
     "createdAt": "2026-03-01T17:00:00Z"
   },
@@ -331,10 +334,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     "inStock": true,
     "featured": true,
     "images": [
-      "https://images-na.ssl-images-amazon.com/images/P/B07K7P97B8.01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B07K7P97B8.01.PT01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B07K7P97B8.01.PT02._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B07K7P97B8.01.PT03._SCLZZZZZZZ_SX1000_.jpg"
+      "/products/ip_1.png",
+      "/products/ip_2.jpg",
+      "/products/ip_3.jpg",
+      "https://assets.hyugalife.com/catalog/product/h/v/hvvg22a8_1_.png",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/l/l/v/weight-gainers-mass-gainers-power-mass-gainer-1-0kg-with-shaker-resized-original-imahhyapmkkwamuy.jpeg"
     ],
     "createdAt": "2026-03-02T01:00:00Z"
   },
@@ -411,10 +415,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     "inStock": true,
     "featured": true,
     "images": [
-      "https://images-na.ssl-images-amazon.com/images/P/B0GWHXK43F.01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0GWHXK43F.01.PT01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0GWHXK43F.01.PT02._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0GWHXK43F.01.PT03._SCLZZZZZZZ_SX1000_.jpg"
+      "/products/cellucor_1.jpg",
+      "/products/cellucor_2.jpg",
+      "/products/cellucor_3.jpg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/f/d/x/creatine-micronized-creatine-cor-performance-rapid-absorption-original-imahnghzy8pn4shs.jpeg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/4/v/a/creatine-micronized-creatine-cor-performance-rapid-absorption-original-imahnghznaymzz9h.jpeg"
     ],
     "createdAt": "2026-03-02T05:00:00Z"
   },
@@ -431,10 +436,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     "inStock": true,
     "featured": false,
     "images": [
-      "https://images-na.ssl-images-amazon.com/images/P/B0HKZDNHGD.01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0HKZDNHGD.01.PT01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0HKZDNHGD.01.PT02._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0HKZDNHGD.01.PT03._SCLZZZZZZZ_SX1000_.jpg"
+      "/products/nutrabay_1.jpg",
+      "/products/nutrabay_2.jpg",
+      "/products/nutrabay_3.jpg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/8/4/d/creatine-pure-micronised-creatine-monohydrate-pre-post-workout-original-imahp6abthgdmngq.jpeg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/z/c/z/creatine-pure-micronised-creatine-monohydrate-pre-post-workout-original-imahr7mxszxhrzan.jpeg"
     ],
     "createdAt": "2026-03-02T05:30:00Z"
   },
@@ -451,10 +457,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     "inStock": true,
     "featured": true,
     "images": [
-      "https://images-na.ssl-images-amazon.com/images/P/B0794F6H4R.01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0794F6H4R.01.PT01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0794F6H4R.01.PT02._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0794F6H4R.01.PT03._SCLZZZZZZZ_SX1000_.jpg"
+      "/products/gat_1.jpg",
+      "/products/gat_2.jpg",
+      "/products/gat_3.jpg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/e/7/t/pre-workout-sport-nitraflex-advanced-30-servings-watermelon-original-imahhne3kaeejyvm.jpeg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/c/r/w/pre-workout-sport-nitraflex-advanced-30-servings-watermelon-original-imahhne3pjpuuqmj.jpeg"
     ],
     "createdAt": "2026-03-02T06:00:00Z"
   },
@@ -510,10 +517,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     "inStock": true,
     "featured": true,
     "images": [
-      "https://images-na.ssl-images-amazon.com/images/P/B008U16A9Y.01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B008U16A9Y.01.PT01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B008U16A9Y.01.PT02._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B008U16A9Y.01.PT03._SCLZZZZZZZ_SX1000_.jpg"
+      "/products/rcss_1.jpg",
+      "/products/rcss_2.jpg",
+      "/products/rcss_3.jpg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/h/0/u/whey-protein-pro-antium-whey-protein-supreme-multifaceted-original-imahhy8qhfsez8z7.jpeg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/o/w/v/whey-protein-pro-antium-whey-protein-supreme-multifaceted-original-imahhy8qgeachsjz.jpeg"
     ],
     "createdAt": "2026-03-02T09:00:00Z"
   },
@@ -570,10 +578,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     "inStock": true,
     "featured": true,
     "images": [
-      "https://images-na.ssl-images-amazon.com/images/P/B08T8R48SQ.01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B08T8R48SQ.01.PT01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B08T8R48SQ.01.PT02._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B08T8R48SQ.01.PT03._SCLZZZZZZZ_SX1000_.jpg"
+      "/products/muscleblaze_1.jpg",
+      "/products/muscleblaze_2.jpg",
+      "/products/muscleblaze_3.jpg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/f/9/0/creatine-micronised-creatine-monohydrate-creamp-powder-original-imahjpeuawkzg4gx.jpeg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/x/b/f/creatine-micronised-creatine-monohydrate-creamp-powder-original-imahjpeugfmurznf.jpeg"
     ],
     "createdAt": "2026-03-02T12:00:00Z"
   },
@@ -590,10 +599,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     "inStock": true,
     "featured": true,
     "images": [
-      "https://images-na.ssl-images-amazon.com/images/P/B0DCZVHNM2.01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0DCZVHNM2.01.PT01._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0DCZVHNM2.01.PT02._SCLZZZZZZZ_SX1000_.jpg",
-      "https://images-na.ssl-images-amazon.com/images/P/B0DCZVHNM2.01.PT03._SCLZZZZZZZ_SX1000_.jpg"
+      "/products/wellcore_1.jpg",
+      "/products/wellcore_2.jpg",
+      "/products/wellcore_3.jpg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/9/l/z/creatine-micronised-creatine-monohydrate-steel-shaker-trustified-original-imahmzcc8jshgbbf.jpeg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/n/b/e/creatine-pure-micronised-creatine-monohydrate-lab-tested-original-imahmy7uuqyzfgpu.jpeg"
     ],
     "createdAt": "2026-03-02T13:00:00Z"
   },
@@ -629,9 +639,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     "inStock": true,
     "featured": true,
     "images": [
-      "https://myogenetix.in/wp-content/uploads/2022/09/Myogenetix-Platinum-Massive-high-Calorie-Weight-Gainer-6-lbs.png",
-      "https://myogenetix.in/wp-content/uploads/2022/09/Myogenetix-Platinum-Massive-high-Calorie-Weight-Gainer-6-lbs-300x300.png",
-      "https://myogenetix.in/wp-content/uploads/2020/10/Myogenetix-Massive-High-Calorie-Weight-Gainer-6-lbs-300x300.png"
+      "/products/myogenetix_1.jpg",
+      "/products/myogenetix_2.jpg",
+      "/products/myogenetix_3.jpg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/v/c/6/-original-imahpwv4yyrx6zjs.jpeg",
+      "https://rukminim2.flixcart.com/image/832/832/xif0q/protein-supplement/b/o/b/-original-imahpwv4ajtmsawe.jpeg"
     ],
     "createdAt": "2026-03-02T15:00:00Z"
   },

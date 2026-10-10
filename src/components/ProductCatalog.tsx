@@ -159,129 +159,179 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          {filteredProducts.map((product) => {
-            const primaryImage =
-              product.images && product.images.length > 0
-                ? product.images[0]
-                : '/placeholder-supplement.jpg';
-
-            return (
-              <div
-                key={product.id}
-                className="glass-card flex flex-col justify-between overflow-hidden group cursor-pointer"
-                onClick={() => onViewProduct(product)}
-              >
-                {/* Image Section */}
-                <div className="relative aspect-square bg-white/70 overflow-hidden flex items-center justify-center p-3">
-                  <img
-                    src={primaryImage}
-                    alt={product.name}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                  />
-
-                  {/* Badges Overlay */}
-                  <div className="absolute top-2.5 left-2.5 flex flex-col gap-1.5 items-start">
-                    {product.featured && (
-                      <span className="text-[10px] font-extrabold uppercase tracking-wide bg-orange-500 text-white px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
-                        <Sparkles className="w-2.5 h-2.5" />
-                        Featured
-                      </span>
-                    )}
-                    <span className="text-[10px] font-bold bg-slate-900/80 backdrop-blur-md text-white px-2 py-0.5 rounded-full shadow-sm">
-                      {product.images?.length || 3} Views
-                    </span>
-                  </div>
-
-                  {/* Stock Status Pill */}
-                  <div className="absolute bottom-2 right-2">
-                    {product.inStock ? (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 backdrop-blur-md px-2 py-0.5 rounded-full border border-emerald-200">
-                        <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                        In Stock
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-rose-800 bg-rose-100/90 backdrop-blur-md px-2 py-0.5 rounded-full border border-rose-200">
-                        <AlertOctagon className="w-3 h-3 text-rose-600" />
-                        Out of Stock
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Content Section */}
-                <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between text-left">
-                  <div>
-                    {/* Brand and category */}
-                    <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 mb-1">
-                      <span>{product.brand}</span>
-                      <span>·</span>
-                      <span className="text-orange-600 font-bold">{product.category}</span>
-                    </div>
-
-                    {/* Product Name */}
-                    <h3 className="font-bold text-sm sm:text-base text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-2">
-                      {product.name}
-                    </h3>
-
-                    {/* Size & Flavour */}
-                    <div className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[11px] text-slate-500">
-                      <span className="font-medium bg-slate-100/80 px-2 py-0.5 rounded-md">
-                        {product.sizeWeight}
-                      </span>
-                      {product.flavour && (
-                        <span className="font-medium bg-slate-100/80 px-2 py-0.5 rounded-md line-clamp-1">
-                          {product.flavour}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Short Description */}
-                    <p className="mt-2 text-xs text-slate-500 line-clamp-2 leading-relaxed">
-                      {product.description}
-                    </p>
-                  </div>
-
-                  {/* Best Deal on WhatsApp & Action (NO PRICE DISPLAYED) */}
-                  <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between">
-                    <div>
-                      <div className="text-xs font-extrabold text-orange-600">
-                        Best Price on WhatsApp
-                      </div>
-                      <div className="text-[10px] text-slate-400 font-medium">
-                        100% Original + GST Bill
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
-                      <button
-                        type="button"
-                        onClick={() => onViewProduct(product)}
-                        aria-label="View product details"
-                        className="p-2 rounded-xl glass-btn-secondary text-slate-600 hover:text-orange-600"
-                        title="View details & photos"
-                      >
-                        <Eye className="w-4 h-4" />
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => onBuyWhatsApp(product)}
-                        className="px-3 py-2 rounded-xl glass-btn-primary text-xs font-bold flex items-center gap-1.5 shadow-sm"
-                      >
-                        <MessageCircle className="w-3.5 h-3.5 fill-current" />
-                        <span>Inquire</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {filteredProducts.map((product) => (
+            <ProductCardItem
+              key={product.id}
+              product={product}
+              onViewProduct={onViewProduct}
+              onBuyWhatsApp={onBuyWhatsApp}
+            />
+          ))}
         </div>
       )}
     </section>
+  );
+};
+
+interface ProductCardItemProps {
+  product: Product;
+  onViewProduct: (product: Product) => void;
+  onBuyWhatsApp: (product: Product) => void;
+}
+
+const ProductCardItem: React.FC<ProductCardItemProps> = ({
+  product,
+  onViewProduct,
+  onBuyWhatsApp,
+}) => {
+  const [imageIndex, setImageIndex] = useState(0);
+  const [imgFailed, setImgFailed] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const images = product.images && product.images.length > 0 ? product.images : [];
+  const currentSrc = imgFailed || images.length === 0
+    ? '/placeholder-supplement.svg'
+    : images[imageIndex] || '/placeholder-supplement.svg';
+
+  const handleImageError = () => {
+    if (imageIndex + 1 < images.length) {
+      setImageIndex((prev) => prev + 1);
+    } else {
+      setImgFailed(true);
+    }
+  };
+
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    if (img.naturalWidth <= 1 || img.naturalHeight <= 1) {
+      handleImageError();
+    } else {
+      setIsLoaded(true);
+    }
+  };
+
+  return (
+    <div
+      className="glass-card flex flex-col justify-between overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-orange-300/80 bg-white/95"
+      onClick={() => onViewProduct(product)}
+    >
+      {/* Image Section */}
+      <div className="relative aspect-square bg-gradient-to-b from-slate-50/80 to-white/90 overflow-hidden flex items-center justify-center p-3.5 border-b border-slate-100">
+        {!isLoaded && !imgFailed && (
+          <div className="absolute inset-0 flex items-center justify-center bg-slate-50/60 animate-pulse">
+            <div className="w-8 h-8 rounded-full border-2 border-orange-500/30 border-t-orange-500 animate-spin" />
+          </div>
+        )}
+
+        <img
+          key={currentSrc}
+          src={currentSrc}
+          alt={product.name}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          className={`w-full h-full object-contain filter drop-shadow-sm group-hover:scale-105 transition-transform duration-500 ${
+            isLoaded ? 'opacity-100' : 'opacity-80'
+          }`}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+        />
+
+        {/* Badges Overlay */}
+        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1.5 items-start pointer-events-none">
+          {product.featured && (
+            <span className="text-[10px] font-extrabold uppercase tracking-wide bg-orange-500 text-white px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+              <Sparkles className="w-2.5 h-2.5" />
+              Featured
+            </span>
+          )}
+          <span className="text-[10px] font-bold bg-slate-900/85 backdrop-blur-md text-white px-2.5 py-0.5 rounded-full shadow-sm">
+            {images.length > 0 ? `${images.length} Photos` : 'Verified'}
+          </span>
+        </div>
+
+        {/* Stock Status Pill */}
+        <div className="absolute bottom-2.5 right-2.5 pointer-events-none">
+          {product.inStock ? (
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 backdrop-blur-md px-2 py-0.5 rounded-full border border-emerald-200">
+              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+              In Stock
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-rose-800 bg-rose-100/90 backdrop-blur-md px-2 py-0.5 rounded-full border border-rose-200">
+              <AlertOctagon className="w-3 h-3 text-rose-600" />
+              Out of Stock
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Content Section */}
+      <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between text-left">
+        <div>
+          {/* Brand and category */}
+          <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 mb-1">
+            <span>{product.brand}</span>
+            <span>·</span>
+            <span className="text-orange-600 font-bold">{product.category}</span>
+          </div>
+
+          {/* Product Name */}
+          <h3 className="font-bold text-sm sm:text-base text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-2">
+            {product.name}
+          </h3>
+
+          {/* Size & Flavour */}
+          <div className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[11px] text-slate-500">
+            <span className="font-medium bg-slate-100/80 px-2 py-0.5 rounded-md">
+              {product.sizeWeight}
+            </span>
+            {product.flavour && (
+              <span className="font-medium bg-slate-100/80 px-2 py-0.5 rounded-md line-clamp-1">
+                {product.flavour}
+              </span>
+            )}
+          </div>
+
+          {/* Short Description */}
+          <p className="mt-2 text-xs text-slate-500 line-clamp-2 leading-relaxed">
+            {product.description}
+          </p>
+        </div>
+
+        {/* Best Deal on WhatsApp & Action */}
+        <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between">
+          <div>
+            <div className="text-xs font-extrabold text-orange-600">
+              Best Price on WhatsApp
+            </div>
+            <div className="text-[10px] text-slate-400 font-medium">
+              100% Original + GST Bill
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              onClick={() => onViewProduct(product)}
+              aria-label="View product details"
+              className="p-2 rounded-xl glass-btn-secondary text-slate-600 hover:text-orange-600 transition-colors"
+              title="View details & photos"
+            >
+              <Eye className="w-4 h-4" />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onBuyWhatsApp(product)}
+              className="px-3 py-2 rounded-xl glass-btn-primary text-xs font-bold flex items-center gap-1.5 shadow-sm"
+            >
+              <MessageCircle className="w-3.5 h-3.5 fill-current" />
+              <span>Inquire</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

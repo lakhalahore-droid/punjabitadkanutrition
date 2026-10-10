@@ -281,7 +281,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         description: formDescription.trim(),
         inStock: formInStock,
         featured: formFeatured,
-        images: formImages.length > 0 ? formImages : ['/placeholder-supplement.jpg'],
+        images: formImages.length > 0 ? formImages : ['/placeholder-supplement.svg'],
       };
 
       if (editingProduct) {
@@ -550,7 +550,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             </thead>
             <tbody className="divide-y divide-slate-100">
               {products.map((p) => {
-                const img = p.images?.[0] || '/placeholder-supplement.jpg';
+                const img = p.images?.[0] || '/placeholder-supplement.svg';
                 return (
                   <tr key={p.id} className="hover:bg-white/60 transition-colors">
                     {/* Item & Brand */}
